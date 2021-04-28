@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+<!--    spring-boot-starter-parent具体作用：-->
+<!--    1.引入父pom里面的依赖时无须指定版本；-->
+<!--    2.java版本，项目编码格式，资源引用描述符已经设置好-->
+<!--    3.插件管理-->
+<!--    a.封装了配置文件的过滤规则-->
+<!--    b.封装了打可执行jar、war的配置-->
+<!--    c.封装了插件的版本信息-->
+<!--    d.封装了日期格式-->
+<!--    e.引入了eclipse和IDEA相关依赖简化了配置，达到开箱即用等-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+<!--    项目信息-->
+    <groupId>com.blendstudy</groupId>
+    <artifactId>jump</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>jump</name>
+    <description>Demo project for Spring Boot</description>
+
+<!--    java 版本-->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+
+    <dependencies>
+
+<!--        在pom.xml中引入spring-boot-starter-web依赖启动器时，就可以实现Web场景开发，-->
+<!--        而不需要额外导入Tomcat服务器以及其他Web依赖文件等。-->
+<!--        当然，这些引入的依赖文件的版本号还是由spring-boot-starter-parent父依赖进行的统一管理。-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+<!--        单元测试-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+<!--        创建项目时没有的的  开始-->
+<!--        1.实体类中添加@Data-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+<!--        2.MyBatis-Spring-Boot-Starter依赖将会提供如下-->
+<!--          自动检测现有的DataSource-->
+<!--          将创建并注册SqlSessionFactory的实例，该实例使用SqlSessionFactoryBean将该DataSource作为输入进行传递-->
+<!--          将创建并注册从SqlSessionFactory中获取的SqlSessionTemplate的实例。-->
+<!--          自动扫描您的mappers，将它们链接到SqlSessionTemplate并将其注册到Spring上下文，以便将它们注入到您的bean中。-->
+<!--          使用了该Starter之后，只需要定义一个DataSource即可（application.properties或application.yml中可配置），-->
+<!--          它会自动创建使用该DataSource的SqlSessionFactoryBean以及SqlSessionTemplate。会自动扫描你的Mappers，-->
+<!--          连接到SqlSessionTemplate，并注册到Spring上下文中。-->
+<!--        不添加Mapper类中的@Mapper不能使用-->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+<!--        3.Oracle 数据库Jar包-->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>12.2.0.1</version>
+        </dependency>
+
+        <!--        创建项目时没有的的  结束-->
+    </dependencies>
+
+    <build>
+        <plugins>
+
+<!--            Spring Boot的Maven插件（Spring Boot Maven plugin）能够以Maven的方式为应用提供Spring Boot的支持，-->
+<!--                        即为Spring Boot应用提供了执行Maven操作的可能。-->
+<!--            Spring Boot Maven plugin能够将Spring Boot应用打包为可执行的jar或war文件，然后以通常的方式运行Spring Boot应用。-->
+<!--            Spring Boot Maven plugin的最新版本为2017.6.8发布的1.5.4.RELEASE，要求Java 8, Maven 3.2及以后。-->
+
+<!--            Spring Boot Maven plugin的5个Goals-->
+<!--            spring-boot:repackage，默认goal。在mvn package之后，再次打包可执行的jar/war，-->
+<!--                                同时保留mvn package生成的jar/war为.origin-->
+<!--            spring-boot:run，运行Spring Boot应用-->
+<!--            spring-boot:start，在mvn integration-test阶段，进行Spring Boot应用生命周期的管理-->
+<!--            spring-boot:stop，在mvn integration-test阶段，进行Spring Boot应用生命周期的管理-->
+<!--            spring-boot:build-info，生成Actuator使用的构建信息文件build-info.properties-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+</project>

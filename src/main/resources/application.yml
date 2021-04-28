@@ -1,0 +1,13 @@
+server:
+  port: 8089
+
+spring:
+  application:
+    name: cus
+  datasource:
+    url: jdbc:oracle:thin:@192.168.100.102:1521/topprd
+    username: dsdata
+    password: dsdata
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+mybatis:
+  mapper-locations: mapper/*xml
