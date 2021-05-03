@@ -78,6 +78,14 @@
             <artifactId>ojdbc8</artifactId>
             <version>12.2.0.1</version>
         </dependency>
+<!--        4.钉钉g工具包  注意只引入jar包，不用引入source包-->
+        <dependency>
+            <groupId>com.taobao.top</groupId>
+            <artifactId>top-api-sdk-dev</artifactId>
+            <version>ding-open-mc-SNAPSHOT</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/src/main/resources/lib/taobao-sdk-java-auto_1479188381469-20210427.jar</systemPath>
+        </dependency>
 
         <!--        创建项目时没有的的  结束-->
     </dependencies>
@@ -100,6 +108,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
+<!--                添加这个才能保证打包时带上钉钉工具包-->
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
             </plugin>
 
 
