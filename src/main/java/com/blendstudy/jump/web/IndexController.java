@@ -2,12 +2,11 @@ package com.blendstudy.jump.web;
 
 import com.blendstudy.jump.entity.IndexEntity;
 import com.blendstudy.jump.entity.User;
+import com.blendstudy.jump.entity.Xmda;
 import com.blendstudy.jump.service.IndexService;
+import com.blendstudy.jump.service.XmdaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,18 +70,26 @@ public class IndexController {
     @Autowired
     IndexService indexService;
 
-    @GetMapping("/getCustomerInfo")
-    public List<IndexEntity> getCustomerInfo(String custno){
+    @GetMapping("/getCustomerInfo/{custno}") //请求路径 http://localhost:8089/index/getCustomerInfo/00001
+    public List<IndexEntity> getCustomerInfo(@PathVariable("custno") String custno){
         //3.List 对象
         List<IndexEntity> cus = indexService.getCsutomerList(custno);
         return cus;
     }
 
-    @GetMapping("/getCustomerInfo2")
+    @GetMapping("/getCustomerInfo2") //请求路径 http://localhost:8089/index/getCustomerInfo2?custno=00001
     public IndexEntity getCustomerInfo2(String custno){
         //3.对象
         IndexEntity cus = indexService.getCsutomerList2(custno);
         return cus;
     }
 
+    @Autowired
+    XmdaService xmdaService;
+
+    @GetMapping("/getOrderList/{xmda004}")
+    public List<Xmda> getOrderList(@PathVariable("xmda004") String xmda004){
+        List<Xmda> orderList = xmdaService.getOrderList(xmda004);
+        return orderList;
+    }
 }

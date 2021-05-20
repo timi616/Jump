@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IndexService {
 
-    public List<IndexEntity> getCsutomerList(String custno);
+    public List<IndexEntity> getCsutomerList(@Param("custno") String custno);
 
     public IndexEntity getCsutomerList2(@Param("custno") String custno);
 }
